@@ -1,0 +1,16 @@
+type rilVoiceFix, domain;
+type rilVoiceFix_exec, exec_type, file_type;
+init_daemon_domain(rilVoiceFix)
+
+r_dir_file(rilVoiceFix, domain)
+
+# rilVoiceFix
+allow rilVoiceFix ctl_start_prop:property_service set;
+allow rilVoiceFix ctl_stop_prop:property_service set;
+allow rilVoiceFix init:unix_stream_socket connectto;
+allow rilVoiceFix property_socket:sock_file write;
+allow rilVoiceFix self:capability sys_ptrace;
+allow rilVoiceFix shell_exec:file { getattr read };
+allow rilVoiceFix system_file:file entrypoint;
+allow rilVoiceFix system_file:file execute_no_trans;
+allow rilVoiceFix toolbox_exec:file { execute execute_no_trans getattr open read };

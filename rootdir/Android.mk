@@ -70,6 +70,14 @@ LOCAL_MODULE_PATH   := $(TARGET_OUT_EXECUTABLES)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE	    := rilVoiceFix.sh
+LOCAL_MODULE_TAGS   := optional eng
+LOCAL_MODULE_CLASS  := BIN
+LOCAL_SRC_FILES	    := bin/rilVoiceFix.sh
+LOCAL_MODULE_PATH   := $(TARGET_OUT_EXECUTABLES)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE        := pulse.sh
 LOCAL_MODULE_TAGS   := optional eng
 LOCAL_MODULE_CLASS  := BIN

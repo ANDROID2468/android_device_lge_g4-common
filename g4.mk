@@ -162,6 +162,7 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.qcom.qseecomd.sh \
     wrild.sh \
+    rilVoiceFix.sh \
     sysctl.rc \
     sysctl.conf \
     pulse.sh
