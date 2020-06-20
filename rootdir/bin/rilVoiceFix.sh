@@ -1,8 +1,16 @@
-#!/system/bin/sh
+#!/sdcard/bin/sh
 # Made By ANDROID2468
 # This is to fix voice/SMS service at startup on some of the VS986 models
 sleep 10
-#sees if your device is a VS986
+
+# Disable script if noscript.txt is found in /system 
+FILE=/sdcard/noscript.txt
+if [ -f "${FILE}" ]; then
+    echo "ok... rilVoiceFix is disabled" > /sdcard/noscript.txt
+    exit
+fi
+
+# sees if your device is a VS986
 dev="$(getprop ro.product.model)"
 if [ "${dev}" = "LGVS986" ];
 then
@@ -41,6 +49,12 @@ then
     # if you loose service
     while true
     do
+        # Disable script if noscript.txt is found in /system 
+        if [ -f "${FILE}" ]; then
+            echo "ok... rilVoiceFix is disabled" > /sdcard/noscript.txt
+            exit
+        fi
+
         des="$(getprop |grep gsm.operator.alpha)"
         if [ "${des}" = "[gsm.operator.alpha]: []" ];
         then
@@ -48,6 +62,10 @@ then
             net="$(getprop |grep gsm.network.type)"
             while [ "${net}" = "[gsm.network.type]: [Unknown]" ]
             do
+                if [ -f "${FILE}" ]; then
+                    echo "ok... rilVoiceFix is disabled" > /sdcard/noscript.txt
+                    exit
+                fi
                 sleep 5
                 net="$(getprop |grep gsm.network.type)"
             done
@@ -60,6 +78,11 @@ then
                 net="$(getprop |grep gsm.network.type)"
             done
 
+            # Disable script if noscript.txt is found in /system 
+            if [ -f "${FILE}" ]; then
+                echo "ok... rilVoiceFix is disabled" > /sdcard/noscript.txt
+                exit
+            fi
 
             # This calls the testcall.com phone number 
             service call audio 7 i32 0 i32 0 i32 8    
